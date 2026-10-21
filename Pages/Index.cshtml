@@ -16,4 +16,4 @@
 @if (Model.Bookings.Count == 0) { <div class="empty"><span>✂</span><h3>A little room to breathe.</h3><p>No appointments for this day yet.</p></div> }
 @foreach(var booking in Model.Bookings) { <article class="appointment"><div><strong>@booking.Start.ToString("HH:mm")</strong><span>@booking.End.ToString("HH:mm")</span></div><div><h3>@booking.Customer</h3><p>@booking.Service.Name with @booking.Stylist.Name</p><span>@booking.Service.PriceDkk DKK</span></div></article> }
 <p class="small">Open 09:00–17:00 · Two stylists · Three treatments</p></aside></section>
-<footer>New AI-assisted reconstruction inspired by the Rodeo / Booking_Gruppe study idea from 2023 · C# / Razor Pages</footer></main></body></html>
+<footer>Rodeo Booking · C# / ASP.NET Core / Razor Pages</footer></main></body></html>
