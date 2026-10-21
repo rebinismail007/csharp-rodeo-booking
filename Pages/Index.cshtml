@@ -1,0 +1,19 @@
+@page
+@model IndexModel
+@using RodeoBooking
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Rodeo — a salon booking demo</title><link rel="stylesheet" href="/site.css"></head>
+<body><main><header><a href="/" class="brand">RODEO<span>STUDIO</span></a><span>GOOD HAIR. GOOD DAY.</span></header>
+<section class="intro"><p class="eyebrow">A FRESH TAKE ON AN OLD SCHOOL IDEA</p><h1>A little time<br><em>for yourself.</em></h1><p>Pick your cut, your person, your moment.<br>A small salon booking demonstration.</p></section>
+@if (Model.Notice is not null) { <p class="success" role="status">@Model.Notice</p> }
+<section class="booking-grid"><form method="post"><h2>Make an appointment</h2><div asp-validation-summary="All" role="alert"></div>
+<label asp-for="Customer">First name (use a demo name)</label><input asp-for="Customer" maxlength="60" autocomplete="off" required>
+<label asp-for="ServiceId">Your treatment</label><select asp-for="ServiceId">@foreach(var service in BookingStore.Services) { <option value="@service.Id">@service.Name · @service.Minutes min · @service.PriceDkk DKK</option> }</select>
+<div class="row"><div><label asp-for="StylistId">Your stylist</label><select asp-for="StylistId">@foreach(var stylist in BookingStore.Stylists) { <option value="@stylist.Id">@stylist.Name</option> }</select></div><div><label asp-for="Start">Time</label><input asp-for="Start" type="time" min="09:00" max="16:30" step="1800" required></div></div>
+<label asp-for="Day">Date</label><input asp-for="Day" type="date" min="@DateTime.Today.ToString("yyyy-MM-dd")" max="@DateTime.Today.AddDays(90).ToString("yyyy-MM-dd")" required>
+<button type="submit">Book demo appointment ↗</button><p class="small">Demo only. No real salon appointment is created.</p></form>
+<aside><p class="eyebrow">THE DAY AT A GLANCE</p><h2>@Model.Day.ToString("dddd, dd MMMM")</h2><form method="get" class="day-filter"><label for="view-day">View another day</label><div class="row"><input type="date" id="view-day" name="Day" value="@Model.Day.ToString("yyyy-MM-dd")"><button type="submit">View</button></div></form>
+@if (Model.Bookings.Count == 0) { <div class="empty"><span>✂</span><h3>A little room to breathe.</h3><p>No appointments for this day yet.</p></div> }
+@foreach(var booking in Model.Bookings) { <article class="appointment"><div><strong>@booking.Start.ToString("HH:mm")</strong><span>@booking.End.ToString("HH:mm")</span></div><div><h3>@booking.Customer</h3><p>@booking.Service.Name with @booking.Stylist.Name</p><span>@booking.Service.PriceDkk DKK</span></div></article> }
+<p class="small">Open 09:00–17:00 · Two stylists · Three treatments</p></aside></section>
+<footer>New AI-assisted reconstruction inspired by the Rodeo / Booking_Gruppe study idea from 2023 · C# / Razor Pages</footer></main></body></html>
