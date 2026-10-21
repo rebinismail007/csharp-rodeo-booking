@@ -2,7 +2,7 @@
 
 A small salon appointment application: choose a treatment, stylist, date and time; see the day's bookings; reject overlapping appointments.
 
-**New AI-assisted reconstruction**, inspired by the Rodeo / `Booking_Gruppe` study-project idea discussed in November–December 2023. The original complete source was not recovered. This repository is a new implementation, with a smaller scope, and does not claim to reproduce the original group members' contributions. Rodeo is used as the historical project label, not as a real salon integration.
+**New reconstruction**, inspired by the Rodeo / `Booking_Gruppe` study-project idea discussed in November–December 2023. The original complete source was not recovered. This repository is a new implementation, with a smaller scope, and does not claim to reproduce the original group members' contributions. Rodeo is used as the historical project label, not as a real salon integration.
 
 ## Run
 
